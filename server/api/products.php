@@ -10,16 +10,11 @@ $fetch = mysqli_fetch_all($queryResult, MYSQLI_ASSOC);
 return $fetch;
 }
 
-$response['body'] = [
-  "message" => "products go here"
-];
-$response['status'] = 202;
 
 if ($request['method'] === 'GET') {
   $link = get_db_link();
   $message = getProducts($link);
-  $response['body'] = [
-    'message' => $message
-  ];
+  $response['body'] = $message;
+
   send($response);
 }
