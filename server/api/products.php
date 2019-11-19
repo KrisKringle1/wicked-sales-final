@@ -23,7 +23,7 @@ if (isset($request['query']['productId'])) {
   $queryResult = mysqli_query($link, $query);
   $fetch = mysqli_fetch_assoc($queryResult);
   if ($fetch == null) {
-    throw new ApiError('The product ID is not there', 400);
+    throw new ApiError('The product ID is not there', 404);
   }
   $response['body'] = $fetch;
   send($response);
@@ -33,7 +33,7 @@ if (isset($request['query']['productId'])) {
   $queryResult = mysqli_query($link, $query);
   $fetch = mysqli_fetch_all($queryResult, MYSQLI_ASSOC);
   if ($fetch == null) {
-    throw new ApiError('The product ID is not there', 400);
+    throw new ApiError('The product ID is not there', 404);
   }
   $response['body'] = $fetch;
   send($response);
