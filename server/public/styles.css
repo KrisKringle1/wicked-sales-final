@@ -1,0 +1,8 @@
+.fittingObj{
+  object-fit: contain;
+  height: 250px;
+}
+
+.height-500{
+  height:500px;
+}
