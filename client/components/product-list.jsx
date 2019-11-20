@@ -6,8 +6,6 @@ class ProductList extends React.Component {
     super(props);
     this.state = { products: [] };
 
-    this.props = props;
-
   }
 
   componentDidMount() {

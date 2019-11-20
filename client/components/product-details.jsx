@@ -39,7 +39,7 @@ class ProductDetails extends React.Component {
       );
     }
     return (
-      <div>hi</div>
+      null
     );
   }
 }
