@@ -5,10 +5,14 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { products: [] };
+
+    this.props = props;
+
   }
 
   componentDidMount() {
     this.getProducts();
+
   }
 
   getProducts() {
@@ -21,12 +25,13 @@ class ProductList extends React.Component {
   }
 
   render() {
+
     return (
       <div className="container d-flex flex-wrap">
         <div className="row">
           {this.state.products.map((object, index) =>
             <div key={index} className="col-md-4">
-              <ProductListItem product={object} />
+              <ProductListItem product={object} callback={this.props.callback} />
             </div>
           )}
         </div>
