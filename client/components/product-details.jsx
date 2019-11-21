@@ -29,11 +29,13 @@ class ProductDetails extends React.Component {
             <h1 className="d-flex">{product.name}</h1>
             <h2 className="d-flex">{realPrice}</h2>
             <p className="d-flex">{product.shortDescription}</p>
+            <button onClick={() => this.props.addToCartCallBack(this.state.product)}>Add To Cart</button>
           </div>
           <div className="container-fluid">
 
             <p className="d-flex">{product.longDescription}</p>
           </div>
+
         </div>
 
       );
