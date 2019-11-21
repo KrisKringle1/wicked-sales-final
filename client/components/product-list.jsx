@@ -5,12 +5,10 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { products: [] };
-
   }
 
   componentDidMount() {
     this.getProducts();
-
   }
 
   getProducts() {
@@ -23,7 +21,6 @@ class ProductList extends React.Component {
   }
 
   render() {
-
     return (
       <div className="container d-flex flex-wrap">
         <div className="row">
