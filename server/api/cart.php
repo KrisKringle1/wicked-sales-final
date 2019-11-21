@@ -26,6 +26,7 @@ if ($request['method'] === 'POST') {
   $fetch = mysqli_fetch_assoc($queryResult);
 
   $timeStampInsert = "INSERT INTO `carts` (createdAt) VALUES (CURRENT_TIMESTAMP)";
+
   if (!isset($_SESSION['cart_id'])) {
     mysqli_query($newLink, $timeStampInsert);
     $sessionId = mysqli_insert_id($newLink);
@@ -38,6 +39,7 @@ if ($request['method'] === 'POST') {
   $joinQueryResponse = mysqli_query($newLink, $joinQuery);
   $productResponse = mysqli_fetch_assoc($joinQueryResponse);
   $response['body'] = $productResponse;
+
   if (!$_SESSION['cart_id']) {
     $_SESSION['cart_id'] = $cartItemsInsertId;
   }
