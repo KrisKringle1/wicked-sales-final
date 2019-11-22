@@ -9,7 +9,7 @@ function Header(props) {
         <h2 className="ml-1">Wicked Sales</h2>
       </div>
       <div className="d-flex">
-        <h6 className="mt-3"> {props.cartItemCount.length} Items</h6>
+        <h6 className="mt-3" onClick={() => props.callback('cart', {})} > {props.cartItemCount.length} Items</h6>
         <div className="fa fa-shopping-cart ml-2 mt-3 fa-lg icon"></div>
       </div>
     </div>

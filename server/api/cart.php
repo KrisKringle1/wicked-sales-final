@@ -7,7 +7,7 @@ if ($request['method'] === 'GET') {
   }
   $newLink = get_db_link();
   $sessionId = $_SESSION['cart_id'];
-  $query = "SELECT cartId, cartItemId, name, products.price, products.productId, shortDescription FROM cartItems JOIN products ON products.productId=cartItems.productId WHERE cartId=${sessionId}";
+  $query = "SELECT cartId, cartItemId, name, products.price, products.productId, shortDescription, products.image FROM cartItems JOIN products ON products.productId=cartItems.productId WHERE cartId=${sessionId}";
   $cartQuery = mysqli_query($newLink, $query);
   $cartQueryResponse = mysqli_fetch_all($cartQuery, MYSQLI_ASSOC);
   $response['body'] = $cartQueryResponse;
