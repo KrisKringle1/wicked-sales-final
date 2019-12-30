@@ -1,25 +1,33 @@
-# wicked-sales
+# Get Beer Here
 
-> - Maintained by: `thebearingedge`
 
-A full stack LAMP & React shopping cart app.
 
-## Introduction
+A full stack LAMP & React shopping cart app for beer related items.
 
-For this project, you will be building a single-page React application and a dynamic PHP API.
+# Live Demo
 
-## Getting Started
+https://www.getbeerhere.kriscodes.net
 
-1. Fork this repository to your GitHub account and clone the fork to your local `lfz` directory.
-2. Check out a `dev` branch and push it to `origin`.
-    ```
-    git push origin dev
-    ```
-3. Install all dependencies in `package.json` with NPM.
-    ```
-    npm install
-    ```
+# Techonologies
+*React.js
+*PHP
+*MySQL
+*Bootstrap 4
+*Webpack 4
+*NPM
+*HTML5
+*JavaScript 
+*AWS EC2
 
-## Instructions
+## Features
 
-There are instructions and Issue Template snippets located in the `features` directory of [the instructions for this project](https://github.com/Learning-Fuze/wicked-sales-instructions).
+*user can view list of beer related items to purchase. 
+*user can view a detailed description of an item when clicked
+*user can add items to their cart
+*user can delete items from their cart
+*user can "submit" their cart for purchase
+
+
+
+## Preview
+
