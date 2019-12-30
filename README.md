@@ -9,23 +9,23 @@ A full stack LAMP & React shopping cart app for beer related items.
 https://www.getbeerhere.kriscodes.net
 
 # Techonologies
-*React.js
-*PHP
-*MySQL
-*Bootstrap 4
-*Webpack 4
-*NPM
-*HTML5
-*JavaScript 
-*AWS EC2
+* React.js
+* PHP
+* MySQL
+* Bootstrap 4
+* Webpack 4
+* NPM
+* HTML5
+* JavaScript 
+* AWS EC2
 
 ## Features
 
-*user can view list of beer related items to purchase. 
-*user can view a detailed description of an item when clicked
-*user can add items to their cart
-*user can delete items from their cart
-*user can "submit" their cart for purchase
+* user can view list of beer related items to purchase. 
+* user can view a detailed description of an item when clicked
+* user can add items to their cart
+* user can delete items from their cart
+* user can "submit" their cart for purchase
 
 
 
