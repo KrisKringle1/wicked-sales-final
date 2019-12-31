@@ -31,4 +31,4 @@ https://www.getbeerhere.kriscodes.net
 
 ## Preview
 
-Screen Shot 2019-11-18 at 2.42.55 PM
+
