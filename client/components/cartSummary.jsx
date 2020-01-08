@@ -29,6 +29,7 @@ function CartSummary(props) {
             key={index}
             product={product}
             callback={props.callback}
+            deleteFromCart={product => props.removeCallback(product)}
           />
         ))}
       </div>

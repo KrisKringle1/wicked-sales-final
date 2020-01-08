@@ -7,7 +7,32 @@ if ($request['method'] === 'GET') {
   }
   $newLink = get_db_link();
   $sessionId = $_SESSION['cart_id'];
-  $query = "SELECT cartId, cartItemId, name, products.price, products.productId, shortDescription, products.image FROM cartItems JOIN products ON products.productId=cartItems.productId WHERE cartId=${sessionId}";
+  $query = "SELECT cartId, cartItemId, name, products.price, products.productId, shortDescription, products.image
+            FROM cartItems
+            JOIN products
+            ON products.productId=cartItems.productId
+            WHERE cartId=${sessionId}";
+  $cartQuery = mysqli_query($newLink, $query);
+  $cartQueryResponse = mysqli_fetch_all($cartQuery, MYSQLI_ASSOC);
+  $response['body'] = $cartQueryResponse;
+  send($response);
+}
+if ($request['method'] === 'DELETE') {
+  if (!$_SESSION['cart_id']) {
+    $response['body'] = [];
+
+    send($response);
+  }
+  $productId = $request['body']['productId'];
+  $cartItemId = $request['body']['cartItemId'];
+  $newLink = get_db_link();
+  $sessionId = $_SESSION['cart_id'];
+  $query = "DELETE
+            FROM cartItems
+            WHERE cartId=${sessionId}
+            AND cartItemId=${cartItemId}";
+
+
   $cartQuery = mysqli_query($newLink, $query);
   $cartQueryResponse = mysqli_fetch_all($cartQuery, MYSQLI_ASSOC);
   $response['body'] = $cartQueryResponse;
@@ -20,7 +45,9 @@ if ($request['method'] === 'POST') {
   if (!isset($requestId) || !intval($requestId)) {
     throw new ApiError('Not a valid product Id', 400);
   }
-  $query =  "SELECT price FROM products WHERE productId=${requestId}";
+  $query =    "SELECT price
+              FROM products
+              WHERE productId=${requestId}";
   $newLink = get_db_link();
   $queryResult = mysqli_query($newLink, $query);
   $fetch = mysqli_fetch_assoc($queryResult);
