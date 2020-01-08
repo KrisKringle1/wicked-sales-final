@@ -49,6 +49,22 @@ export default class App extends React.Component {
       });
   }
 
+  removeFromCart(product) {
+    const required = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(product)
+
+    };
+    fetch('api/cart', required)
+      .then(productData => productData.json())
+      .then(jsonProductData => {
+        const array = [...this.state.cart];
+        const newArray = array.filter(filteredProducts => filteredProducts.cartItemId !== product.cartItemId);
+        this.setState({ cart: newArray });
+      });
+  }
+
   render() {
     if (this.state.view.name === 'catalog') {
       return (
@@ -74,7 +90,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart} callback={this.setView} />
-          <CartSummary cartInfo={this.state.cart} callback={this.setView} />
+          <CartSummary cartInfo={this.state.cart} callback={this.setView} removeCallback={product => this.removeFromCart(product)} />
         </div>
       );
     }
