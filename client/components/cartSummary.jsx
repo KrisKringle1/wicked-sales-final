@@ -17,7 +17,7 @@ function CartSummary(props) {
           <h2 className="mr-3 mt-2">My Cart</h2>
         </div>
         <div className="d-flex text-black mr-5">
-          <button className="btn btn-success m-2  d-flex ">Checkout</button>
+          <button className="btn btn-success m-2  d-flex " onClick={() => props.callback('checkout', {})}>Checkout</button>
           <h2 className="ml-auto p-2">{realPrice}</h2>
         </div>
       </div>
