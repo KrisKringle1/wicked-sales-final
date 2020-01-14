@@ -36,6 +36,8 @@ class CheckoutForm extends React.Component {
   render() {
     return (
       <div className="container">
+        <div onClick={() => this.props.setView('catalog', {})} style={{ cursor: 'pointer' }} className="fas fa-arrow-left back-button">  Back to Catalog</div>
+
         <form onSubmit={this.formSubmission}>
           <div className="form-row">
             <div className="form-group col-md-6">

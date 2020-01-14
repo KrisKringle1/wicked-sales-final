@@ -27,7 +27,7 @@ class ProductDetails extends React.Component {
           <div className="content-div">
 
             <div className="container py-5">
-              <div onClick={() => this.props.callback('catalog', {})} className="fas fa-arrow-left">  Back to Catalog</div>
+              <div onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="fas fa-arrow-left">  Back to Catalog</div>
 
               <div className="container py-3 bg-white">
                 <div className="row mb-3">
