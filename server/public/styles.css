@@ -33,6 +33,10 @@ background-image: linear-gradient(#73471C, #EDA115);
   border-radius: 20px;
 }
 
-.carouselContainer{
+.productCard:hover{
+  transform: translateY(-5px);
+}
 
+.cart{
+  cursor: pointer;
 }
