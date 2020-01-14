@@ -32,7 +32,7 @@ export default class App extends React.Component {
   }
 
   getCartItems() {
-    fetch('server/api/cart.php')
+    fetch('/api/cart')
       .then(cartData => cartData.json())
       .then(jsonData => {
 
@@ -46,7 +46,7 @@ export default class App extends React.Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(product)
     };
-    fetch('server/api/cart.php', required)
+    fetch('api/cart', required)
       .then(productData => productData.json())
       .then(jsonProductData => {
         this.setState({ cart: this.state.cart.concat(jsonProductData) });
@@ -60,7 +60,7 @@ export default class App extends React.Component {
       body: JSON.stringify(product)
 
     };
-    fetch('server/api/cart.php', required)
+    fetch('api/cart', required)
       .then(productData => productData.json())
       .then(jsonProductData => {
         const array = [...this.state.cart];
