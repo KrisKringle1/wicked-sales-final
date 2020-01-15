@@ -31,5 +31,5 @@ https://www.getbeerhere.kriscodes.net
 
 ## Preview
 
-![alt text](https://github.com/KrisKringle1/wicked-sales-final/blob/master/get-beer-here-demo.gif raw=true "Logo Title Text 1")
+![alt text](https://github.com/KrisKringle1/wicked-sales-final/blob/master/get-beer-here-demo.gif)
 
