@@ -6,7 +6,7 @@ A full stack LAMP & React shopping cart app for beer related items.
 
 # Live Demo
 
-https://www.getbeerhere.kriscodes.net
+https://getbeerhere.kriscodes.net
 
 # Techonologies
 * React.js
