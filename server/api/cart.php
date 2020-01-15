@@ -27,16 +27,16 @@ if ($request['method'] === 'DELETE') {
   $cartItemId = $request['body']['cartItemId'];
   $newLink = get_db_link();
   $sessionId = $_SESSION['cart_id'];
-  $query = "DELETE
+  $query = $newLink->query("DELETE
             FROM cartItems
             WHERE cartId=${sessionId}
-            AND cartItemId=${cartItemId}";
+            AND cartItemId=${cartItemId}");
 
 
-  $cartQuery = mysqli_query($newLink, $query);
-  $cartQueryResponse = mysqli_fetch_all($cartQuery, MYSQLI_ASSOC);
-  $response['body'] = $cartQueryResponse;
-  send($response);
+  // $cartQuery = mysqli_query($newLink, $query, MYSQLI_USE_RESULT);
+  // $cartQueryResponse = mysqli_fetch_all($cartQuery, MYSQLI_ASSOC);
+  // $response['body'] = $cartQueryResponse;
+  // send($response);
 }
 
 if ($request['method'] === 'POST') {
