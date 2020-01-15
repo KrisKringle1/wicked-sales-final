@@ -31,5 +31,5 @@ https://www.getbeerhere.kriscodes.net
 
 ## Preview
 
-![alt text](https://github.com/KrisKringle1/wicked-sales-final/blob/master/Screen%20Shot%202019-12-30%20at%204.05.53%20PM.png?raw=true "Logo Title Text 1")
+![alt text](https://github.com/KrisKringle1/wicked-sales-final/blob/master/get-beer-here-demo.gif raw=true "Logo Title Text 1")
 
