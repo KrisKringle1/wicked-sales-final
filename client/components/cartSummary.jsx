@@ -13,7 +13,9 @@ function CartSummary(props) {
             <div className="container py-1 ">
               <div onClick={() => props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="fas fa-arrow-left">  Back to Catalog</div>
 
-              <h2 className=" d-flex justify-content-end py-0">{realPrice}</h2>
+              <h1 className="d-flex justify-content-center">Your cart is empty!</h1>
+
+              <h2 className="text-right py-0">{realPrice}</h2>
 
               <div className=" text-black d-flex justify-content-end">
 
