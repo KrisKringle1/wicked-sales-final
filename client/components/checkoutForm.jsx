@@ -5,9 +5,19 @@ class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      firstName: '',
+      lastName: '',
       name: '',
+      email: '',
+      address1: '',
+      address2: '',
+      city: '',
+      zip: '',
       creditCard: '',
+      cardExpiration: '',
+      cardCvv: '',
       shippingAddress: ''
+
     };
     this.updateName = this.updateName.bind(this);
     this.formSubmission = this.formSubmission.bind(this);
