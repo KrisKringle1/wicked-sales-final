@@ -25,7 +25,7 @@ class ProductList extends React.Component {
       <div className="container py-5">
         <div className="card-deck">
           {this.state.products.map((object, index) =>
-            <div key={index} className="col-md-6 col-lg-4 d-flex align-items-stretch p-0">
+            <div key={index} className="col-md-6 col-lg-4 d-flex align-items-stretch p-2">
               <ProductListItem product={object} callback={this.props.callback} />
             </div>
           )}
