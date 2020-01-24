@@ -15,6 +15,8 @@ class CheckoutForm extends React.Component {
       creditCard: '',
       cardExpiration: '',
       cardCvv: '',
+      month: '',
+      year: '',
       shippingAddress: '',
       isValidated: {
         name: true,
@@ -24,8 +26,9 @@ class CheckoutForm extends React.Component {
         city: true,
         zip: true,
         creditCard: true,
-        cardExpiration: true,
         cardCvv: true,
+        month: true,
+        year: true,
         shippingAddress: true
       }
 
@@ -47,6 +50,7 @@ class CheckoutForm extends React.Component {
       cardExpiration: true,
       cardCvv: true,
       shippingAddress: true
+
     };
 
     switch (event.target.name) {
@@ -74,6 +78,32 @@ class CheckoutForm extends React.Component {
 
   formSubmission() {
     event.preventDefault();
+    const isValidated = JSON.parse(JSON.stringify(this.state.isValidated));
+    const nameRegex = new RegExp(/^[a-zA-Z ]+$/);
+    const emailRegex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    if (!nameRegex.test(this.state.name) || this.state.name.length < 5) {
+      isValidated.name = false;
+    }
+    if (this.state.phone.length < 10) {
+      isValidated.phone = false;
+    }
+    if (!emailRegex.test(this.state.emeail)) {
+      isValidated.email = false;
+    }
+    if (this.state.address1.length < 5) {
+      isValidated.address1 = false;
+    }
+    if (this.state.city.length < 3) {
+      isValidated.city = false;
+    }
+    if (this.state.zip.length < 5) {
+      isValidated.zip = false;
+
+    }
+    if (this.state.creditCard.length < 16) {
+      isValidated.creditCard = false;
+    }
+
     const cart = {
       name: this.state.name,
       // email: this.state.email,
@@ -114,7 +144,7 @@ class CheckoutForm extends React.Component {
                   value={this.state.phone}
                   minLength="10"
                   maxLength="11" />
-                <div className="invalid-feedback">
+                <div className="error-message">
                   <small>Missing or invalid phone number.</small>
                 </div>
               </div>
@@ -231,21 +261,88 @@ class CheckoutForm extends React.Component {
           </div>
           <div className="form-group">
             <h5>Payment Information</h5>
-            <label htmlFor="creditCard">Credit Card</label>
+
+          </div>
+          <div className="form-row p-3 border rounded mb-3">
+            <div className="form-group col-md-6">
+              <label htmlFor="creditCard">Credit Card</label>
+              <input type="tel"
+                className="form-control"
+                id="inputAddress"
+                name="creditCard"
+                placeholder="12345678"
+                minLength="16"
+                maxLength="16"
+                value={this.state.creditCard}
+                onChange={this.updateName}></input>
+            </div>
+            <div className="error-message">
+              <small>Missing Credit Card</small>
+            </div>
+          </div>
+          <div className="form-group col-md-2">
+            <label htmlFor="inputState">Month</label>
+            <select className={`form-control ${this.state.isValidated.month ? '' : 'is-invalid'}`}
+              name="month">
+              <option defaultValue hidden></option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <div className="error-message">
+              <small>Select a month.</small>
+            </div>
+          </div>
+          <div className="form-group col-md-2">
+            <label htmlFor="inputState">Year</label>
+            <select className={`form-control ${this.state.isValidated.year ? '' : 'is-invalid'}`}
+              name="year">
+              <option defaultValue hidden></option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+            </select>
+            <div className="error-message">
+              <small>Select a year.</small>
+            </div>
+          </div>
+          <div className="form-group col-md-2">
+            <label htmlFor="inputZip">CVV</label>
             <input type="tel"
-              className="form-control"
-              id="inputAddress"
-              name="creditCard"
-              placeholder="12345678"
-              minLength="16"
-              maxLength="16"
-              onChange={this.updateName}></input>
+              autoComplete="new-password"
+              name="cvv"
+              className={`form-control ${this.state.isValidated.cardCvv ? '' : 'is-invalid'}`}
+              onChange={() => this.handleChange(event)}
+              value={this.state.cvv}
+              minLength="3"
+              maxLength="4" />
+            <div className="error-message">
+              <small>Missing or invalid CVV.</small>
+            </div>
           </div>
 
           <button type="submit" className="btn btn-primary">Checkout</button>
-        </form>
-      </div>
 
+        </form >
+
+      </div>
     );
   }
 }
