@@ -5,9 +5,8 @@ class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
       name: '',
+      phone: '',
       email: '',
       address1: '',
       address2: '',
@@ -16,7 +15,19 @@ class CheckoutForm extends React.Component {
       creditCard: '',
       cardExpiration: '',
       cardCvv: '',
-      shippingAddress: ''
+      shippingAddress: '',
+      isValidated: {
+        name: true,
+        email: true,
+        address1: true,
+        address2: true,
+        city: true,
+        zip: true,
+        creditCard: true,
+        cardExpiration: true,
+        cardCvv: true,
+        shippingAddress: true
+      }
 
     };
     this.updateName = this.updateName.bind(this);
@@ -24,8 +35,40 @@ class CheckoutForm extends React.Component {
   }
 
   updateName(event) {
+    const isValidated = {
+      name: true,
+      phone: true,
+      email: true,
+      address1: true,
+      address2: true,
+      city: true,
+      zip: true,
+      creditCard: true,
+      cardExpiration: true,
+      cardCvv: true,
+      shippingAddress: true
+    };
 
-    this.setState({ [event.target.name]: event.target.value });
+    switch (event.target.name) {
+      case 'zip':
+      case 'phone':
+      case 'creditCard':
+      case 'cardCvv':
+        if (/^[0-9]*$/.test(event.target.value)) {
+          this.setState({ [event.target.name]: event.target.value });
+        }
+        break;
+      case 'name':
+      case 'address1':
+      case 'address2':
+        if (event.target.value.indexOf('  ') === -1) {
+          this.setState({ [event.target.name]: event.target.value });
+
+        }
+        this.setState({ isValidated });
+    }
+
+    // this.setState({[event.target.isValidated.name]})
 
   }
 
@@ -52,25 +95,72 @@ class CheckoutForm extends React.Component {
           <div className="form-row">
             <div className="form-group col-md-6">
               <label>Name</label>
-              <input type="name" className="form-control" placeholder="Name" name="name" onChange={this.updateName}></input>
+              <input type="name"
+                className="form-control"
+                placeholder="Name"
+                name="name"
+                onChange={this.updateName}>
+
+              </input>
+            </div>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <label htmlFor="name">Phone</label>
+                <input type="tel"
+                  autoComplete="new-password"
+                  name="phone"
+                  className="form-control"
+                  onChange={this.updateName}
+                  value={this.state.phone}
+                  minLength="10"
+                  maxLength="11" />
+                <div className="invalid-feedback">
+                  <small>Missing or invalid phone number.</small>
+                </div>
+              </div>
             </div>
             <div className="form-group col-md-6">
               <label htmlFor="inputPassword4">Email</label>
-              <input type="email" className="form-control" id="inputEmail4" placeholder="Email"></input>
+              <input type="email"
+                className="form-control"
+                id="inputEmail4"
+                placeholder="Email">
+
+              </input>
             </div>
           </div>
+
           <div className="form-group">
-            <label htmlFor="inputAddress">Credit Card</label>
-            <input type="text" className="form-control" id="inputAddress" name="creditCard" placeholder="12345678" onChange={this.updateName}></input>
+            <label htmlFor="inputAddress1">Address 1</label>
+            <input type="text"
+              className="form-control"
+              id="inputAddress2"
+              name="shippingAddress"
+              placeholder="1234 Main St"
+              onChange={this.updateName}>
+
+            </input>
           </div>
           <div className="form-group">
-            <label htmlFor="inputAddress2">Address </label>
-            <input type="text" className="form-control" id="inputAddress2" name="shippingAddress" placeholder="1234 Main St" onChange={this.updateName}></input>
+            <label htmlFor="inputAddress2">Address 2</label>
+            <input type="text"
+              className="form-control"
+              id="inputAddress2"
+              name="shippingAddress"
+              placeholder="1234 Main St"
+              onChange={this.updateName}>
+
+            </input>
           </div>
+
           <div className="form-row">
             <div className="form-group col-md-6">
               <label htmlFor="inputCity">City</label>
-              <input type="text" className="form-control" id="inputCity"></input>
+              <input type="text"
+                className="form-control"
+                id="inputCity">
+
+              </input>
             </div>
             <div className="form-group col-md-4">
               <label htmlFor="inputState">State</label>
@@ -132,14 +222,30 @@ class CheckoutForm extends React.Component {
             </div>
             <div className="form-group col-md-2">
               <label htmlFor="inputZip">Zip</label>
-              <input type="text" className="form-control" id="inputZip"></input>
+              <input type="text"
+                className="form-control"
+                id="inputZip">
+
+              </input>
             </div>
+          </div>
+          <div className="form-group">
+            <h5>Payment Information</h5>
+            <label htmlFor="creditCard">Credit Card</label>
+            <input type="tel"
+              className="form-control"
+              id="inputAddress"
+              name="creditCard"
+              placeholder="12345678"
+              minLength="16"
+              maxLength="16"
+              onChange={this.updateName}></input>
           </div>
 
           <button type="submit" className="btn btn-primary">Checkout</button>
         </form>
+      </div>
 
-      </div >
     );
   }
 }
