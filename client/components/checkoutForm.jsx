@@ -115,16 +115,25 @@ class CheckoutForm extends React.Component {
       isValidated.cardCvv = false;
     }
 
-    const cart = {
-      name: this.state.name,
-      // email: this.state.email,
-      // phone: this.state.phone,
-      creditCard: this.state.creditCard,
-      // creditCardCVV: this.state.creditCardCVV,
-      shippingAddress: this.state.shippingAddress
-    };
-    this.props.placeOrder(cart);
+    if (Object.values(isValidated).indexOf(false) === -1) {
 
+      const cart = {
+        name: this.state.name.trim(),
+        // email: this.state.email,
+        // phone: this.state.phone,
+        creditCard: this.state.creditCard.trim(),
+        // creditCardCVV: this.state.creditCardCVV,
+        shippingAddress: this.state.shippingAddress
+      };
+      this.props.placeOrder(cart);
+    } else {
+      this.setState({
+        name: this.state.name.trim(),
+        address1: this.state.address1.trim(),
+        city: this.state.city,
+        isValidated: isValidated
+      });
+    }
   }
 
   render() {
