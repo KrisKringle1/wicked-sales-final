@@ -103,6 +103,17 @@ class CheckoutForm extends React.Component {
     if (this.state.creditCard.length < 16) {
       isValidated.creditCard = false;
     }
+    if (this.state.month.length < 2) {
+      isValidated.month = false;
+    }
+
+    if (this.state.year.length < 2) {
+      isValidated.year = false;
+    }
+
+    if (this.state.cardCvv.lenth < 3) {
+      isValidated.cardCvv = false;
+    }
 
     const cart = {
       name: this.state.name,
