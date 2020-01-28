@@ -153,6 +153,9 @@ class CheckoutForm extends React.Component {
                 onSubmit={() => this.formSubmission(event)}>
 
               </input>
+              <div className="error-message">
+                <small>Missing Name</small>
+              </div>
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
@@ -160,7 +163,7 @@ class CheckoutForm extends React.Component {
                 <input type="tel"
                   autoComplete="new-password"
                   name="phone"
-                  className="form-control"
+                  className={`form-control ${this.state.isValidated.phone ? '' : 'error-message'}`}
                   onChange={() => this.updateName(event)}
                   value={this.state.phone}
                   minLength="10"
@@ -178,6 +181,9 @@ class CheckoutForm extends React.Component {
                 placeholder="Email">
 
               </input>
+              <div className="error-message">
+                <small>Missing Email</small>
+              </div>
             </div>
           </div>
 
@@ -191,6 +197,9 @@ class CheckoutForm extends React.Component {
               onChange={() => this.updateName(event)}>
 
             </input>
+            <div className="error-message">
+              <small>Missing Address</small>
+            </div>
           </div>
           <div className="form-group">
             <label htmlFor="inputAddress2">Address 2</label>
@@ -212,6 +221,9 @@ class CheckoutForm extends React.Component {
                 id="inputCity">
 
               </input>
+              <div className="error-message">
+                <small>Missing City</small>
+              </div>
             </div>
             <div className="form-group col-md-4">
               <label htmlFor="inputState">State</label>
@@ -270,6 +282,9 @@ class CheckoutForm extends React.Component {
                 <option value="WY">Wyoming</option>
 
               </select>
+              <div className="error-message">
+                <small>Missing State</small>
+              </div>
             </div>
             <div className="form-group col-md-2">
               <label htmlFor="inputZip">Zip</label>
@@ -280,6 +295,9 @@ class CheckoutForm extends React.Component {
                 id="inputZip">
 
               </input>
+              <div className="error-message">
+                <small>Missing Zip Code</small>
+              </div>
             </div>
           </div>
           <div className="form-group">
