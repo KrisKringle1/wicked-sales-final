@@ -324,7 +324,7 @@ class CheckoutForm extends React.Component {
           </div>
           <div className="form-group col-md-2">
             <label htmlFor="inputState">Month</label>
-            <select className={`form-control ${this.state.isValidated.month ? '' : 'is-invalid'}`}
+            <select className={`form-control ${this.state.isValidated.month ? '' : 'error-message'}`}
               name="month">
               <option defaultValue hidden></option>
               <option value="01">01</option>
@@ -346,7 +346,7 @@ class CheckoutForm extends React.Component {
           </div>
           <div className="form-group col-md-2">
             <label htmlFor="inputState">Year</label>
-            <select className={`form-control ${this.state.isValidated.year ? '' : 'is-invalid'}`}
+            <select className={`form-control ${this.state.isValidated.year ? '' : 'error-message'}`}
               name="year">
               <option defaultValue hidden></option>
               <option value="2020">2020</option>
@@ -370,7 +370,7 @@ class CheckoutForm extends React.Component {
             <input type="tel"
               autoComplete="new-password"
               name="cvv"
-              className={`form-control ${this.state.isValidated.cardCvv ? '' : 'is-invalid'}`}
+              className={`form-control ${this.state.isValidated.cardCvv ? '' : 'error-message'}`}
               onChange={() => this.updateName(event)}
               value={this.state.cvv}
               minLength="3"
