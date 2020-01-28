@@ -161,7 +161,7 @@ class CheckoutForm extends React.Component {
                   autoComplete="new-password"
                   name="phone"
                   className="form-control"
-                  onChange={this.updateName}
+                  onChange={() => this.updateName(event)}
                   value={this.state.phone}
                   minLength="10"
                   maxLength="11" />
@@ -188,7 +188,7 @@ class CheckoutForm extends React.Component {
               id="inputAddress2"
               name="shippingAddress"
               placeholder="1234 Main St"
-              onChange={this.updateName}>
+              onChange={() => this.updateName(event)}>
 
             </input>
           </div>
@@ -199,7 +199,7 @@ class CheckoutForm extends React.Component {
               id="inputAddress2"
               name="shippingAddress"
               placeholder="1234 Main St"
-              onChange={this.updateName}>
+              onChange={() => this.updateName(event)}>
 
             </input>
           </div>
@@ -275,6 +275,8 @@ class CheckoutForm extends React.Component {
               <label htmlFor="inputZip">Zip</label>
               <input type="text"
                 className="form-control"
+                onChange={() => this.updateName(event)}
+
                 id="inputZip">
 
               </input>
@@ -295,7 +297,8 @@ class CheckoutForm extends React.Component {
                 minLength="16"
                 maxLength="16"
                 value={this.state.creditCard}
-                onChange={this.updateName}></input>
+                onChange={() => this.updateName(event)}
+              ></input>
             </div>
             <div className="error-message">
               <small>Missing Credit Card</small>
@@ -350,7 +353,7 @@ class CheckoutForm extends React.Component {
               autoComplete="new-password"
               name="cvv"
               className={`form-control ${this.state.isValidated.cardCvv ? '' : 'is-invalid'}`}
-              onChange={() => this.handleChange(event)}
+              onChange={() => this.updateName(event)}
               value={this.state.cvv}
               minLength="3"
               maxLength="4" />
