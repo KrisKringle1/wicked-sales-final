@@ -146,16 +146,17 @@ class CheckoutForm extends React.Component {
             <div className="form-group col-md-6">
               <label>Name</label>
               <input type="name"
-                className="form-control"
+                className={`form-control ${this.state.isValidated.name ? '' : 'error-message'}`}
                 placeholder="Name"
                 name="name"
-                onChange={this.updateName}>
+                onChange={() => this.updateName(event)}
+                onSubmit={() => this.formSubmission(event)}>
 
               </input>
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label htmlFor="name">Phone</label>
+                <label htmlFor="phone">Phone</label>
                 <input type="tel"
                   autoComplete="new-password"
                   name="phone"
