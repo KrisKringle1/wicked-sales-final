@@ -103,17 +103,37 @@ class CheckoutForm extends React.Component {
     if (this.state.creditCard.length < 16) {
       isValidated.creditCard = false;
     }
+    if (this.state.month.length < 2) {
+      isValidated.month = false;
+    }
 
-    const cart = {
-      name: this.state.name,
-      // email: this.state.email,
-      // phone: this.state.phone,
-      creditCard: this.state.creditCard,
-      // creditCardCVV: this.state.creditCardCVV,
-      shippingAddress: this.state.shippingAddress
-    };
-    this.props.placeOrder(cart);
+    if (this.state.year.length < 2) {
+      isValidated.year = false;
+    }
 
+    if (this.state.cardCvv.lenth < 3) {
+      isValidated.cardCvv = false;
+    }
+
+    if (Object.values(isValidated).indexOf(false) === -1) {
+
+      const cart = {
+        name: this.state.name.trim(),
+        // email: this.state.email,
+        // phone: this.state.phone,
+        creditCard: this.state.creditCard.trim(),
+        // creditCardCVV: this.state.creditCardCVV,
+        shippingAddress: this.state.shippingAddress
+      };
+      this.props.placeOrder(cart);
+    } else {
+      this.setState({
+        name: this.state.name.trim(),
+        address1: this.state.address1.trim(),
+        city: this.state.city,
+        isValidated: isValidated
+      });
+    }
   }
 
   render() {
@@ -126,21 +146,25 @@ class CheckoutForm extends React.Component {
             <div className="form-group col-md-6">
               <label>Name</label>
               <input type="name"
-                className="form-control"
+                className={`form-control ${this.state.isValidated.name ? '' : 'error-message'}`}
                 placeholder="Name"
                 name="name"
-                onChange={this.updateName}>
+                onChange={() => this.updateName(event)}
+                onSubmit={() => this.formSubmission(event)}>
 
               </input>
+              <div className="error-message">
+                <small>Missing Name</small>
+              </div>
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label htmlFor="name">Phone</label>
+                <label htmlFor="phone">Phone</label>
                 <input type="tel"
                   autoComplete="new-password"
                   name="phone"
-                  className="form-control"
-                  onChange={this.updateName}
+                  className={`form-control ${this.state.isValidated.phone ? '' : 'error-message'}`}
+                  onChange={() => this.updateName(event)}
                   value={this.state.phone}
                   minLength="10"
                   maxLength="11" />
@@ -157,6 +181,9 @@ class CheckoutForm extends React.Component {
                 placeholder="Email">
 
               </input>
+              <div className="error-message">
+                <small>Missing Email</small>
+              </div>
             </div>
           </div>
 
@@ -167,9 +194,12 @@ class CheckoutForm extends React.Component {
               id="inputAddress2"
               name="shippingAddress"
               placeholder="1234 Main St"
-              onChange={this.updateName}>
+              onChange={() => this.updateName(event)}>
 
             </input>
+            <div className="error-message">
+              <small>Missing Address</small>
+            </div>
           </div>
           <div className="form-group">
             <label htmlFor="inputAddress2">Address 2</label>
@@ -178,7 +208,7 @@ class CheckoutForm extends React.Component {
               id="inputAddress2"
               name="shippingAddress"
               placeholder="1234 Main St"
-              onChange={this.updateName}>
+              onChange={() => this.updateName(event)}>
 
             </input>
           </div>
@@ -191,6 +221,9 @@ class CheckoutForm extends React.Component {
                 id="inputCity">
 
               </input>
+              <div className="error-message">
+                <small>Missing City</small>
+              </div>
             </div>
             <div className="form-group col-md-4">
               <label htmlFor="inputState">State</label>
@@ -249,14 +282,22 @@ class CheckoutForm extends React.Component {
                 <option value="WY">Wyoming</option>
 
               </select>
+              <div className="error-message">
+                <small>Missing State</small>
+              </div>
             </div>
             <div className="form-group col-md-2">
               <label htmlFor="inputZip">Zip</label>
               <input type="text"
                 className="form-control"
+                onChange={() => this.updateName(event)}
+
                 id="inputZip">
 
               </input>
+              <div className="error-message">
+                <small>Missing Zip Code</small>
+              </div>
             </div>
           </div>
           <div className="form-group">
@@ -274,7 +315,8 @@ class CheckoutForm extends React.Component {
                 minLength="16"
                 maxLength="16"
                 value={this.state.creditCard}
-                onChange={this.updateName}></input>
+                onChange={() => this.updateName(event)}
+              ></input>
             </div>
             <div className="error-message">
               <small>Missing Credit Card</small>
@@ -329,7 +371,7 @@ class CheckoutForm extends React.Component {
               autoComplete="new-password"
               name="cvv"
               className={`form-control ${this.state.isValidated.cardCvv ? '' : 'is-invalid'}`}
-              onChange={() => this.handleChange(event)}
+              onChange={() => this.updateName(event)}
               value={this.state.cvv}
               minLength="3"
               maxLength="4" />
