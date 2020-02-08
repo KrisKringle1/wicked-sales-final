@@ -53,6 +53,8 @@ class CheckoutForm extends React.Component {
       creditCard: true,
       cardExpiration: true,
       cardCvv: true,
+      month: true,
+      year: true,
       shippingAddress: true
 
     };
@@ -94,7 +96,7 @@ class CheckoutForm extends React.Component {
     if (this.state.phone.length < 10) {
       isValidated.phone = false;
     }
-    if (!emailRegex.test(this.state.emeail)) {
+    if (!emailRegex.test(this.state.email)) {
       isValidated.email = false;
     }
     if (this.state.shippingAddress.length < 5) {
@@ -118,7 +120,7 @@ class CheckoutForm extends React.Component {
       isValidated.year = false;
     }
 
-    if (this.state.cardCvv.lenth < 3) {
+    if (this.state.cardCvv.length < 3) {
       isValidated.cardCvv = false;
     }
 
@@ -187,11 +189,13 @@ class CheckoutForm extends React.Component {
               </div>
             </div>
             <div className="form-group col-md-6">
-              <label htmlFor="inputPassword4">Email</label>
-              <input type="email"
+              <label htmlFor="email">Email</label>
+              <input type="name"
                 className={`form-control ${this.state.isValidated.email ? ' ' : 'is-invalid'}`}
-                id="inputEmail4"
-                placeholder="Email">
+                placeholder="Email"
+                name="email"
+                onChange={() => this.updateName(event)}
+                onSubmit={() => this.formSubmission(event)}>
 
               </input>
               <div className="invalid-feedback">
@@ -229,9 +233,12 @@ class CheckoutForm extends React.Component {
           <div className="form-row">
             <div className="form-group col-md-6">
               <label htmlFor="inputCity">City</label>
-              <input type="text"
+              <input type="name"
                 className={`form-control ${this.state.isValidated.city ? ' ' : 'is-invalid'}`}
-                id="inputCity">
+                placeholder="City"
+                name="city"
+                onChange={() => this.updateName(event)}
+                onSubmit={() => this.formSubmission(event)}>
 
               </input>
               <div className="invalid-feedback">
@@ -301,11 +308,12 @@ class CheckoutForm extends React.Component {
             </div>
             <div className="form-group col-md-2">
               <label htmlFor="inputZip">Zip</label>
-              <input type="text"
+              <input type="name"
                 className={`form-control ${this.state.isValidated.zip ? ' ' : 'is-invalid'}`}
+                placeholder="Zip Code"
+                name="zip"
                 onChange={() => this.updateName(event)}
-
-                id="inputZip">
+                onSubmit={() => this.formSubmission(event)}>
 
               </input>
               <div className="invalid-feedback">
