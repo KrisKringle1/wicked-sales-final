@@ -6,69 +6,51 @@ function CartSummary(props) {
   const realPrice = `$${(totalPrice / 100).toFixed(2)}`;
   if (props.cartInfo.length === 0) {
     return (
-      <div>
-        <div>
-          <div className="content-div">
+      <div className="container py-5">
+        <div className="mb-3">
 
-            <div className="container py-1 ">
-              <div onClick={() => props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="fas fa-arrow-left">  Back to Catalog</div>
-
-              <h1 className="d-flex justify-content-center">Your cart is empty!</h1>
-
-              <h2 className="text-right py-0">{realPrice}</h2>
-
-              <div className=" text-black d-flex justify-content-end">
-
-                <div>
-                  <button className="btn btn-success  " disabled="true" onClick={() => props.callback('checkout', {})}>Checkout</button>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
+          <a href="#" onClick={() => props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
+          </a>
         </div>
+
+        <h1 className="fade-in slide-in">Cart</h1>
+
+        <h2 className="fade-in slide-in">There are no items in your cart!</h2>
+
       </div>
+
     );
   } else {
     return (
-      <div>
+      <div className="container py-5">
+        <div className="mb-3">
+
+          <a href="#" onClick={() => props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
+          </a>
+        </div>
+        <h1 className="fade-in slide-in">Cart</h1>
+
+        {props.cartInfo.map((product, index) => (
+          <CartSummaryItem
+            key={index}
+            product={product}
+            callback={props.callback}
+            deleteFromCart={product => props.removeCallback(product)}
+
+          />
+
+        ))}
         <div>
-          <div className="content-div">
-
-            <div className="container py-1 ">
-              <div onClick={() => props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="fas fa-arrow-left">  Back to Catalog</div>
-
-              <h2 className=" d-flex justify-content-end py-0">{realPrice}</h2>
-
-              <div className=" text-black d-flex justify-content-end">
-
-                <div>
-                  <button className="btn btn-success  " onClick={() => props.callback('checkout', {})}>Checkout</button>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <div className="container ">
-
-          {props.cartInfo.map((product, index) => (
-            <CartSummaryItem
-              key={index}
-              product={product}
-              callback={props.callback}
-              deleteFromCart={product => props.removeCallback(product)}
-
-            />
-
-          ))}
 
         </div>
+
+        <div className="d-md-flex justify-content-between slide-in">
+          <h3 className="md-my-auto- text-black-50 slide-in">Total: {realPrice}</h3>
+
+          <button className="btn btn-success primary my-auto slide-in" onClick={() => props.callback('checkout', {})}>Checkout</button>
+
+        </div>
+
       </div >
 
     );
