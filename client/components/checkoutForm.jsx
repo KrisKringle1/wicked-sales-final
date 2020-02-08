@@ -151,8 +151,12 @@ class CheckoutForm extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div onClick={() => this.props.setView('catalog', {})} style={{ cursor: 'pointer' }} className="fas fa-arrow-left back-button">  Back to Catalog</div>
+      <div className="container py-5">
+        <div className="mb-3">
+
+          <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
+          </a>
+        </div>
 
         <form onSubmit={() => this.formSubmission(event)}
           className="p-5 border rounded bg-light needs-validation"
