@@ -47,7 +47,8 @@ if ($request['method'] === 'POST') {
   $queryResult = mysqli_query($newLink, $query);
   $fetch = mysqli_fetch_assoc($queryResult);
 
-  $timeStampInsert = "INSERT INTO `carts` (createdAt) VALUES (CURRENT_TIMESTAMP)";
+  $timeStampInsert = "INSERT INTO `carts` (createdAt)
+                      VALUES (CURRENT_TIMESTAMP)";
 
   if (!isset($_SESSION['cart_id'])) {
     mysqli_query($newLink, $timeStampInsert);
@@ -55,12 +56,15 @@ if ($request['method'] === 'POST') {
   }
 
   $cartItemsInsert = "INSERT INTO `cartItems` (cartId, productId, price, quantity)
-  VALUES($sessionId, $requestId, $fetch[price], 1)
-    ON DUPLICATE
-                    KEY UPDATE quantity = quantity $operator 1";
+                      VALUES($sessionId, $requestId, $fetch[price], 1)
+                      ON DUPLICATE
+                      KEY UPDATE quantity = quantity $operator 1";
   mysqli_query($newLink, $cartItemsInsert);
   $cartItemsInsertId = mysqli_insert_id($newLink);
-  $joinQuery = "SELECT * FROM `cartItems` JOIN products ON products.productId=cartItems.productId WHERE cartItemId={$cartItemsInsertId}";
+  $joinQuery = "SELECT * FROM `cartItems`
+                JOIN products
+                ON products.productId=cartItems.productId
+                WHERE cartItemId={$cartItemsInsertId}";
   $joinQueryResponse = mysqli_query($newLink, $joinQuery);
   $productResponse = mysqli_fetch_assoc($joinQueryResponse);
   $response['body'] = $productResponse;

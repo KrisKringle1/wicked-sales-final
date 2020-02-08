@@ -65,21 +65,23 @@ export default class App extends React.Component {
   }
 
   quantityModifier(productId, operator) {
-    const object = { productId, operator };
-    const required = {
+    const bodyObject = { productId, operator };
+    const request = 'api/cart';
+    const initObj = {
       method: 'POST',
-      body: JSON.stringify(object),
+      body: JSON.stringify(bodyObject),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-type': 'application/json'
       }
     };
-
-    fetch('/api/cart', required)
+    fetch(request, initObj)
       .then(response => response.json())
       .then(() => {
         this.getCartItems();
         this.setState();
-      });
+      })
+      .catch(error => console.error('There was an error:', error.message));
+
   }
 
   removeFromCart(product) {
