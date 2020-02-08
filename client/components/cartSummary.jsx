@@ -2,8 +2,8 @@ import React from 'react';
 import CartSummaryItem from './cartSummaryItem';
 
 function CartSummary(props) {
-  const totalPrice = props.cartInfo.reduce((accum, item) => (accum + item.price), 0);
-  const realPrice = `$${(totalPrice / 100).toFixed(2)}`;
+
+  const realPrice = props.calculateTotal;
   if (props.cartInfo.length === 0) {
     return (
       <div className="container py-5">

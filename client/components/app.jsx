@@ -14,6 +14,7 @@ export default class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.quantityModifier = this.quantityModifier.bind(this);
+    this.calculateTotal = this.calculateTotal.bind(this);
     this.state = {
       cart: [],
       view: {
@@ -51,6 +52,16 @@ export default class App extends React.Component {
       .then(jsonProductData => {
         this.setState({ cart: this.state.cart.concat(jsonProductData) });
       });
+  }
+
+  calculateTotal() {
+    const itemsArray = this.state.cart;
+    let itemTotal = 0;
+    for (let cartIndex = 0; cartIndex < itemsArray.length; cartIndex++) {
+      itemTotal += (itemsArray[cartIndex].price * itemsArray[cartIndex].quantity);
+    }
+    itemTotal = (itemTotal / 100).toFixed(2);
+    return itemTotal;
   }
 
   quantityModifier(productId, operator) {
@@ -136,7 +147,8 @@ export default class App extends React.Component {
           <CartSummary cartInfo={this.state.cart}
             callback={this.setView}
             removeCallback={product => this.removeFromCart(product)}
-            quantityModifier={this.quantityModifier} />
+            quantityModifier={this.quantityModifier}
+            calculateTotal={this.calculateTotal} />
         </div>
       );
     }
@@ -145,7 +157,9 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart} callback={this.setView} />
-          <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} />
+          <CheckoutForm placeOrder={this.placeOrder}
+            setView={this.setView}
+            calculateTotal={this.calculateTotal} />
         </div>
       );
     }
