@@ -40,9 +40,6 @@ function CartSummary(props) {
           />
 
         ))}
-        <div>
-
-        </div>
 
         <div className="d-md-flex justify-content-between slide-in">
           <h3 className="md-my-auto- text-black-50 slide-in">Total: {realPrice}</h3>
