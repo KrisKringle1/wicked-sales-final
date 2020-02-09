@@ -2,6 +2,12 @@ import React from 'react';
 
 function Header(props) {
 
+  let cartItemCount = 0;
+
+  for (let index = 0; index < props.cartItemCount.length; index++) {
+    cartItemCount += props.cartItemCount[index].quantity;
+  }
+
   return (
 
     <div className="sticky-top text-white py-2 header">
@@ -11,7 +17,7 @@ function Header(props) {
           <h2 className="ml-1">Get Beer Here</h2>
         </div>
         <div className="d-flex">
-          <h6 className="mt-3 cart" onClick={() => props.callback('cart', {})} > {props.cartItemCount.length} Items</h6>
+          <h6 className="mt-3 cart" onClick={() => props.callback('cart', {})} > {cartItemCount} Item{cartItemCount === 1 ? null : 's'}</h6>
           <div className="fa fa-shopping-cart ml-2 mt-3 fa-lg icon"></div>
         </div>
       </div>
