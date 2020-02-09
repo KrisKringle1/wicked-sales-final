@@ -61,11 +61,14 @@ if ($request['method'] === 'POST') {
                       ON DUPLICATE
                       KEY UPDATE quantity = quantity $operator 1";
   mysqli_query($newLink, $cartItemsInsert);
+
   $cartItemsInsertId = mysqli_insert_id($newLink);
-  $joinQuery = "SELECT * FROM cartItems
-                JOIN products
-                ON products.productId=cartItems.productId
-                WHERE cartItemId={$cartItemsInsertId}";
+  $joinQuery = "SELECT cartItems.cartItemId
+                        AS id, cartItems.productId, cartItems.quantity, products.name, products.price, products.image, products.shortDescription
+                      FROM cartItems
+                      JOIN products
+                        ON cartItems.productId = products.productId
+                     WHERE cartItems.cartItemId={$cartItemsInsertId}";
   $joinQueryResponse = mysqli_query($newLink, $joinQuery);
   $productResponse = mysqli_fetch_assoc($joinQueryResponse);
   $response['body'] = $productResponse;
