@@ -35,12 +35,12 @@ class ProductDetails extends React.Component {
               <div className="col-md-5">
                 <img src={product.image} className="float-left fittedObj col-sm"></img>
               </div>
-              <div className="col-md-7">
+              <div className="col-md-7 ">
 
-                <h1 className="d-flex ">{product.name}</h1>
-                <h2 className="d-flex ">{realPrice}</h2>
-                <p className="d-flex ">{product.shortDescription}</p>
-                <p className="d-flex">{product.longDescription}</p>
+                <h1 className="d-flex font-weight-bold ">{product.name}</h1>
+                <h2 className="d-flex font-weight-normal ">{realPrice}</h2>
+                <p className="d-flex font-italic ">{product.shortDescription}</p>
+                <p className="d-flex font-weight-light ">{product.longDescription}</p>
                 <button className="btn btn-primary" onClick={() => this.props.addToCart(this.state.product, '+')}>Add To Cart</button>
               </div>
             </div>

@@ -7,6 +7,10 @@
   height:500px;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 .width-500{
   height:75%;
   width: 75%;

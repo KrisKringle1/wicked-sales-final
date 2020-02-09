@@ -5,15 +5,18 @@ function ProductListItem(props) {
 
   return (
 
-    < div onClick={() => props.callback('details', { productId: props.product.productId })
-    } className="card m-2 height-500 productCard" >
-      <img src={props.product.image} className="card-img-top fittingObj"></img>
-      <div className="card-body">
-        <h5 className="card-title">{props.product.name}</h5>
-        <h5 className="card-text">{realPrice}</h5>
-        <p className="card-text">{props.product.shortDescription}</p>
-      </div>
-    </div >
+    <div className="col-md-6 col-lg-4 d-flex align-items-stretch p-0 fade-in">
+
+      < div onClick={() => props.callback('details', { productId: props.product.productId })
+      } className="card mb-4 pointer productCard item-card" >
+        <img src={props.product.image} className="card-img-top fittingObj"></img>
+        <div className="card-body text-center">
+          <h5 className="card-title">{props.product.name}</h5>
+          <h5 className="card-text font-weight-bold">{realPrice}</h5>
+          <p className="card-text font-italic">{props.product.shortDescription}</p>
+        </div>
+      </div >
+    </div>
 
   );
 }
