@@ -18,14 +18,15 @@ function CartSummaryItem(props) {
           </div>
           <div className="col-md-8 m-auto ">
 
-            <h2 className="text-black-50 ">{realPrice}</h2>
-            <p className="">{props.product.shortDescription}</p>
-            <div className="d-flex">
-              <h5 className="m-auto ">Quantity: </h5>
-              <div className="d-flex btn-group mx-3 my-auto border border-dark rounded">
+            <h2 className="font-weight-bold col-md-6">{realPrice}</h2>
+            <p className="col-md-12 ">{props.product.longDescription}</p>
+            <div className="d-flex ">
+              <h5 className=" col-md-1 m-auto flex-row-reverse ">Quantity: </h5>
+              <div className="d-flex btn-group mx-3 my-auto border border-dark rounded ">
+
                 <div className="d-flex">
 
-                  <button className="btn btn-light rounded-light"
+                  <button className="btn btn-light rounded-light "
                     onClick={() => {
                       if (props.product.quantity > 1) {
                         props.addToCart(props.product, '-');
