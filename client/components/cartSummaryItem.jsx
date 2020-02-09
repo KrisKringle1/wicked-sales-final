@@ -3,7 +3,8 @@ import React from 'react';
 function CartSummaryItem(props) {
   const realPrice = `$${(props.product.price / 100).toFixed(2)}`;
   return (
-    <div>
+
+    < div >
       <div className="container mb-3">
         <div className="row border bg-white rounded p-3 position-relative item-card ">
           <div className="d-flex justify-content-between">
@@ -48,7 +49,7 @@ function CartSummaryItem(props) {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
