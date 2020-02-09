@@ -13,7 +13,8 @@ export default class App extends React.Component {
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
-
+    // this.quantityModifier = this.quantityModifier.bind(this);
+    this.calculateTotal = this.calculateTotal.bind(this);
     this.state = {
       cart: [],
       view: {
@@ -32,25 +33,35 @@ export default class App extends React.Component {
   }
 
   getCartItems() {
-    fetch('/api/cart')
-      .then(cartData => cartData.json())
-      .then(jsonData => {
+    const request = '/api/cart';
+    fetch(request)
+      .then(response => response.json())
+      .then(data => this.setState({ cart: data }))
+      .catch(error => console.error('There was an error:', error.message));
+  }
 
-        this.setState({ cart: jsonData });
+  addToCart(product, operator) {
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ productId: product.productId, operator: operator })
+    };
+    fetch('/api/cart', req)
+      .then(response => response.json())
+      .then(data => {
+        this.setState();
+        this.getCartItems();
       });
   }
 
-  addToCart(product) {
-    const required = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(product)
-    };
-    fetch('api/cart', required)
-      .then(productData => productData.json())
-      .then(jsonProductData => {
-        this.setState({ cart: this.state.cart.concat(jsonProductData) });
-      });
+  calculateTotal() {
+    const itemsArray = this.state.cart;
+    let itemTotal = 0;
+    for (let cartIndex = 0; cartIndex < itemsArray.length; cartIndex++) {
+      itemTotal += (itemsArray[cartIndex].price * itemsArray[cartIndex].quantity);
+    }
+    itemTotal = (itemTotal / 100).toFixed(2);
+    return itemTotal;
   }
 
   removeFromCart(product) {
@@ -60,7 +71,7 @@ export default class App extends React.Component {
       body: JSON.stringify(product)
 
     };
-    fetch('api/cart', required)
+    fetch('/api/cart', required)
       .then(productData => productData.json())
       .then(jsonProductData => {
         const array = [...this.state.cart];
@@ -97,8 +108,12 @@ export default class App extends React.Component {
     if (this.state.view.name === 'details') {
       return (
         <div>
-          <Header cartItemCount={this.state.cart} callback={this.setView} />
-          <ProductDetails view={this.state.view.params} callback={this.setView} addToCartCallBack={this.addToCart} />
+          <Header cartItemCount={this.state.cart}
+            callback={this.setView} />
+          <ProductDetails view={this.state.view.params}
+            callback={this.setView}
+
+            addToCart={this.addToCart} />
 
         </div>
 
@@ -109,8 +124,13 @@ export default class App extends React.Component {
     if (this.state.view.name === 'cart') {
       return (
         <div>
-          <Header cartItemCount={this.state.cart} callback={this.setView} />
-          <CartSummary cartInfo={this.state.cart} callback={this.setView} removeCallback={product => this.removeFromCart(product)} />
+          <Header cartItemCount={this.state.cart}
+            callback={this.setView} />
+          <CartSummary cartInfo={this.state.cart}
+            callback={this.setView}
+            removeCallback={product => this.removeFromCart(product)}
+            addToCart={this.addToCart}
+            calculateTotal={this.calculateTotal} />
         </div>
       );
     }
@@ -119,7 +139,9 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart} callback={this.setView} />
-          <CheckoutForm placeOrder={this.placeOrder} setView={this.setView} />
+          <CheckoutForm placeOrder={this.placeOrder}
+            setView={this.setView}
+            calculateTotal={this.calculateTotal} />
         </div>
       );
     }
