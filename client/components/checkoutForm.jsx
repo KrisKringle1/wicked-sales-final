@@ -154,7 +154,7 @@ class CheckoutForm extends React.Component {
       <div className="container py-5">
         <div className="mb-3">
 
-          <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
+          <a href="#" onClick={() => this.props.setView('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
           </a>
         </div>
 
