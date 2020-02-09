@@ -45,9 +45,9 @@ class CartSummary extends React.Component {
     const realPrice = this.props.calculateTotal();
     const products = this.props.cartInfo.map(product => {
 
-      return <CartSummaryItem
-        key={product.id}
-        product={product}
+      return <CartSummaryItem product={product}
+        key={product.productId}
+
         callback={this.props.callback}
         deleteFromCart={product => this.props.removeCallback(product)}
         addToCart={this.props.addToCart} />;
