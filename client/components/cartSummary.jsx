@@ -36,7 +36,7 @@ function CartSummary(props) {
             product={product}
             callback={props.callback}
             deleteFromCart={product => props.removeCallback(product)}
-            quantityModifier={props.quantityModifier}
+            addToCart={props.addToCart}
 
           />
 

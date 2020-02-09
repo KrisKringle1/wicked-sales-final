@@ -7,7 +7,7 @@ if ($request['method'] === 'GET') {
   }
   $newLink = get_db_link();
   $sessionId = $_SESSION['cart_id'];
-  $query = "SELECT cartId, cartItemId, name, products.price, products.productId, shortDescription, products.image
+  $query = "SELECT cartId, cartItemId, cartItems.quantity, name, products.price, products.productId, shortDescription, products.image
             FROM cartItems
             JOIN products
             ON products.productId=cartItems.productId
@@ -37,14 +37,15 @@ if ($request['method'] === 'POST') {
   $requestId = $request['body']['productId'];
   $sessionId = $_SESSION['cart_id'];
   $operator = $request['body']['operator'];
+
   if (!isset($requestId) || !intval($requestId)) {
     throw new ApiError('Not a valid product Id', 400);
   }
-  $query =    "SELECT price
-              FROM products
-              WHERE productId=${requestId}";
+  $query =    "SELECT *
+                       FROM products
+                      WHERE productId=$requestId";
   $newLink = get_db_link();
-  $queryResult = mysqli_query($newLink, $query);
+  $queryResult = $newLink->query($query);
   $fetch = mysqli_fetch_assoc($queryResult);
 
   $timeStampInsert = "INSERT INTO `carts` (createdAt)
@@ -55,13 +56,13 @@ if ($request['method'] === 'POST') {
     $sessionId = mysqli_insert_id($newLink);
   }
 
-  $cartItemsInsert = "INSERT INTO `cartItems` (cartId, productId, price, quantity)
+  $cartItemsInsert = "INSERT INTO cartItems (cartId, productId, price, quantity)
                       VALUES($sessionId, $requestId, $fetch[price], 1)
                       ON DUPLICATE
                       KEY UPDATE quantity = quantity $operator 1";
   mysqli_query($newLink, $cartItemsInsert);
   $cartItemsInsertId = mysqli_insert_id($newLink);
-  $joinQuery = "SELECT * FROM `cartItems`
+  $joinQuery = "SELECT * FROM cartItems
                 JOIN products
                 ON products.productId=cartItems.productId
                 WHERE cartItemId={$cartItemsInsertId}";

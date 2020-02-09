@@ -13,7 +13,7 @@ export default class App extends React.Component {
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
-    this.quantityModifier = this.quantityModifier.bind(this);
+    // this.quantityModifier = this.quantityModifier.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
     this.state = {
       cart: [],
@@ -33,24 +33,24 @@ export default class App extends React.Component {
   }
 
   getCartItems() {
-    fetch('/api/cart')
-      .then(cartData => cartData.json())
-      .then(jsonData => {
-
-        this.setState({ cart: jsonData });
-      });
+    const request = '/api/cart';
+    fetch(request)
+      .then(response => response.json())
+      .then(data => this.setState({ cart: data }))
+      .catch(error => console.error('There was an error:', error.message));
   }
 
-  addToCart(product) {
-    const required = {
+  addToCart(product, operator) {
+    const req = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(product)
+      body: JSON.stringify({ productId: product.productId, operator: operator })
     };
-    fetch('api/cart', required)
-      .then(productData => productData.json())
-      .then(jsonProductData => {
-        this.setState({ cart: this.state.cart.concat(jsonProductData) });
+    fetch('/api/cart', req)
+      .then(response => response.json())
+      .then(data => {
+        this.setState();
+        this.getCartItems();
       });
   }
 
@@ -64,26 +64,6 @@ export default class App extends React.Component {
     return itemTotal;
   }
 
-  quantityModifier(productId, operator) {
-    const bodyObject = { productId, operator };
-    const request = 'api/cart';
-    const initObj = {
-      method: 'POST',
-      body: JSON.stringify(bodyObject),
-      headers: {
-        'Content-type': 'application/json'
-      }
-    };
-    fetch(request, initObj)
-      .then(response => response.json())
-      .then(() => {
-        this.getCartItems();
-        this.setState();
-      })
-      .catch(error => console.error('There was an error:', error.message));
-
-  }
-
   removeFromCart(product) {
     const required = {
       method: 'DELETE',
@@ -91,7 +71,7 @@ export default class App extends React.Component {
       body: JSON.stringify(product)
 
     };
-    fetch('api/cart', required)
+    fetch('/api/cart', required)
       .then(productData => productData.json())
       .then(jsonProductData => {
         const array = [...this.state.cart];
@@ -132,8 +112,8 @@ export default class App extends React.Component {
             callback={this.setView} />
           <ProductDetails view={this.state.view.params}
             callback={this.setView}
-            addToCartCallBack={this.addToCart}
-            quantityModifier={this.quantityModifier} />
+
+            addToCart={this.addToCart} />
 
         </div>
 
@@ -149,7 +129,7 @@ export default class App extends React.Component {
           <CartSummary cartInfo={this.state.cart}
             callback={this.setView}
             removeCallback={product => this.removeFromCart(product)}
-            quantityModifier={this.quantityModifier}
+            addToCart={this.addToCart}
             calculateTotal={this.calculateTotal} />
         </div>
       );

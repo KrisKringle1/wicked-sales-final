@@ -2,7 +2,6 @@ import React from 'react';
 
 function CartSummaryItem(props) {
   const realPrice = `$${(props.product.price / 100).toFixed(2)}`;
-
   return (
     <div>
       <div className="container mb-3">
@@ -22,7 +21,7 @@ function CartSummaryItem(props) {
               <button className="btn btn-light rounded-light"
                 onClick={() => {
                   if (props.product.quantity > 1) {
-                    props.quantityModifier(props.product.productId, '-');
+                    props.addToCart(props.product, '-');
                   } else {
                     props.deleteFromCart(props.product);
                   }
@@ -36,7 +35,9 @@ function CartSummaryItem(props) {
             <div className="d-flex">
               <button className="btn btn-light rounded-left"
                 onClick={() => {
-                  props.quantityModifier(props.product.productId, '+');
+
+                  props.addToCart(props.product, '+');
+
                 }}>
                 <i className="fas fa-plus m-auto" />
 
