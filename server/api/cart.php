@@ -7,7 +7,7 @@ if ($request['method'] === 'GET') {
   }
   $newLink = get_db_link();
   $sessionId = $_SESSION['cart_id'];
-  $query = "SELECT cartId, cartItemId, cartItems.quantity, name, products.price, products.productId, shortDescription, products.image
+  $query = "SELECT cartId, cartItemId, cartItems.quantity, name, products.price, products.productId, shortDescription,  longDescription, products.image
             FROM cartItems
             JOIN products
             ON products.productId=cartItems.productId

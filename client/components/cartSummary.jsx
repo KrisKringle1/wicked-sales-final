@@ -62,9 +62,9 @@ class CartSummary extends React.Component {
             </a>
           </div>
 
-          <h1 className="fade-in slide-in">Cart</h1>
+          <h1 className="">Cart</h1>
 
-          <h2 className="fade-in slide-in">There are no items in your cart!</h2>
+          <h2 className="">There are no items in your cart!</h2>
 
         </div>
 
@@ -77,14 +77,14 @@ class CartSummary extends React.Component {
             <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
             </a>
           </div>
-          <h1 className="fade-in slide-in">Cart</h1>
+          <h1 className="">Cart</h1>
 
           {products}
 
-          <div className="d-md-flex justify-content-between slide-in">
-            <h3 className="md-my-auto- text-black-50 slide-in">Total: ${realPrice}</h3>
+          <div className="d-md-flex justify-content-between ">
+            <h3 className="md-my-auto- text-black-50 ">Total: ${realPrice}</h3>
 
-            <button className="btn btn-success primary my-auto slide-in" onClick={() => this.props.callback('checkout', {})}>Checkout</button>
+            <button className="btn btn-success primary my-auto " onClick={() => this.props.callback('checkout', {})}>Checkout</button>
 
           </div>
 
