@@ -13,19 +13,34 @@ export default class App extends React.Component {
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
-    // this.quantityModifier = this.quantityModifier.bind(this);
+    this.toggleIntroModal = this.toggleIntroModal.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
     this.state = {
       cart: [],
       view: {
         name: 'catalog',
         params: {}
+      },
+      showIntroModal: {
+        show: true,
+        displayNone: false
       }
     };
   }
 
   setView(name, params) {
     this.setState({ view: { name: name, params: params } });
+  }
+
+  toggleIntroModal() {
+
+    this.setState({
+      showIntroModal: {
+        show: false,
+        displayNone: false
+      }
+    });
+    document.querySelector('.intro-modal').classList.add('d-none');
   }
 
   componentDidMount() {
@@ -71,7 +86,7 @@ export default class App extends React.Component {
       body: JSON.stringify(product)
 
     };
-    fetch('/api/cart', required)
+    fetch('api/cart', required)
       .then(productData => productData.json())
       .then(jsonProductData => {
         const array = [...this.state.cart];
@@ -99,7 +114,13 @@ export default class App extends React.Component {
     if (this.state.view.name === 'catalog') {
       return (
         <div>
-          <Header cartItemCount={this.state.cart} callback={this.setView} />
+          <Header cartItemCount={this.state.cart}
+
+            callback={this.setView}
+            showIntroModal={this.state.showIntroModal}
+            toggleIntroModal={this.toggleIntroModal}
+          />
+
           <Carousel />
           <ProductList callback={this.setView} />
         </div>
@@ -109,7 +130,10 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart}
-            callback={this.setView} />
+            callback={this.setView}
+            showIntroModal={this.state.showIntroModal}
+            toggleIntroModal={this.toggleIntroModal}
+          />
           <ProductDetails view={this.state.view.params}
             callback={this.setView}
 
@@ -125,7 +149,10 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart}
-            callback={this.setView} />
+            callback={this.setView}
+            showIntroModal={this.state.showIntroModal}
+            toggleIntroModal={this.toggleIntroModal}
+          />
           <CartSummary cartInfo={this.state.cart}
             callback={this.setView}
             removeCallback={product => this.removeFromCart(product)}
@@ -138,7 +165,11 @@ export default class App extends React.Component {
     if (this.state.view.name === 'checkout') {
       return (
         <div>
-          <Header cartItemCount={this.state.cart} callback={this.setView} />
+          <Header cartItemCount={this.state.cart}
+            callback={this.setView}
+            showIntroModal={this.state.showIntroModal}
+            toggleIntroModal={this.toggleIntroModal}
+          />
           <CheckoutForm placeOrder={this.placeOrder}
             setView={this.setView}
             calculateTotal={this.calculateTotal} />

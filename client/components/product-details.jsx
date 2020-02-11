@@ -1,10 +1,48 @@
 import React from 'react';
+import AddModal from './add-modal';
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { product: null };
+    this.state = {
+      product: null,
+      showModal: {
+        show: false,
+        displayNone: true
+      }
+    };
     this.props = props;
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  setView(name, params) {
+    this.setState({ view: { name: name, params: params } });
+  }
+
+  toggleModal() {
+    if (this.state.showModal.show) {
+      this.setState({
+        showModal: {
+          show: false,
+          displayNone: false
+        }
+      });
+      setTimeout(() => {
+        this.setState({
+          showModal: {
+            show: false,
+            displayNone: true
+          }
+        });
+      }, 750);
+    } else {
+      this.setState({
+        showModal: {
+          show: true,
+          displayNone: false
+        }
+      });
+    }
   }
 
   componentDidMount() {
@@ -41,11 +79,17 @@ class ProductDetails extends React.Component {
                 <h2 className="d-flex font-weight-normal ">{realPrice}</h2>
                 <p className="d-flex font-italic ">{product.shortDescription}</p>
                 <p className="d-flex font-weight-light ">{product.longDescription}</p>
-                <button className="btn btn-primary" onClick={() => this.props.addToCart(this.state.product, '+')}>Add To Cart</button>
+                <button className="btn btn-primary" onClick={() => { this.props.addToCart(this.state.product, '+'); this.toggleModal(); }
+                }>Add To Cart</button>
               </div>
+              <AddModal showModal={this.state.showModal}
+                setView={this.props.callback}
+                toggleModal={this.toggleModal}
+                product={this.state.product} />
             </div>
           </div>
-        </div>
+
+        </div >
 
       );
     }

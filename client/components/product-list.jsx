@@ -23,7 +23,7 @@ class ProductList extends React.Component {
   render() {
     return (
       <div className="container py-5">
-        <div className="card-deck d-flex">
+        <div className="card-deck d-flex ">
           {this.state.products.map((object, index) =>
 
             <ProductListItem key={index} product={object} callback={this.props.callback} />

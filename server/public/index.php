@@ -2,6 +2,7 @@
 
 require_once '../api/_lifecycle.php';
 
+// print(json_encode($request));
 switch ($request['path']) {
   case '/':
     readfile('index.html');
