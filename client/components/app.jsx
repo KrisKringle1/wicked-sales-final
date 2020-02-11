@@ -24,6 +24,10 @@ export default class App extends React.Component {
       showIntroModal: {
         show: true,
         displayNone: false
+      },
+      showModal: {
+        show: false,
+        displayNone: true
       }
     };
   }
@@ -119,6 +123,7 @@ export default class App extends React.Component {
             callback={this.setView}
             showIntroModal={this.state.showIntroModal}
             toggleIntroModal={this.toggleIntroModal}
+            showModal={this.state.showModal}
           />
 
           <Carousel />
@@ -133,6 +138,7 @@ export default class App extends React.Component {
             callback={this.setView}
             showIntroModal={this.state.showIntroModal}
             toggleIntroModal={this.toggleIntroModal}
+            showModal={this.state.showModal}
           />
           <ProductDetails view={this.state.view.params}
             callback={this.setView}
@@ -152,6 +158,7 @@ export default class App extends React.Component {
             callback={this.setView}
             showIntroModal={this.state.showIntroModal}
             toggleIntroModal={this.toggleIntroModal}
+            showModal={this.state.showModal}
           />
           <CartSummary cartInfo={this.state.cart}
             callback={this.setView}
@@ -169,6 +176,7 @@ export default class App extends React.Component {
             callback={this.setView}
             showIntroModal={this.state.showIntroModal}
             toggleIntroModal={this.toggleIntroModal}
+            showModal={this.state.showModal}
           />
           <CheckoutForm placeOrder={this.placeOrder}
             setView={this.setView}
