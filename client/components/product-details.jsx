@@ -66,6 +66,7 @@ class ProductDetails extends React.Component {
 
             <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
             </a>
+
           </div>
 
           <div className="container py-3 bg-white">
@@ -87,6 +88,7 @@ class ProductDetails extends React.Component {
                 toggleModal={this.toggleModal}
                 product={this.state.product} />
             </div>
+
           </div>
 
         </div >

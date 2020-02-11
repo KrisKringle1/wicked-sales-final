@@ -33,14 +33,20 @@ export default class App extends React.Component {
   }
 
   toggleIntroModal() {
-
     this.setState({
       showIntroModal: {
         show: false,
         displayNone: false
       }
     });
-    document.querySelector('.intro-modal').classList.add('d-none');
+    setTimeout(() => {
+      this.setState({
+        showIntroModal: {
+          show: false,
+          displayNone: true
+        }
+      });
+    }, 750);
   }
 
   componentDidMount() {

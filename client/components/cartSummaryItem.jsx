@@ -9,7 +9,10 @@ function CartSummaryItem(props) {
         <div className="row border bg-white rounded p-3 position-relative item-card ">
           <div className="d-flex justify-content-between w-100">
             <h1 className="d-flex ">{props.product.name}</h1>
-            <i className="far fa-times-circle cancel-button pointer" onClick={product => props.deleteFromCart(props.product)} />
+            <i className="far fa-times-circle cancel-button pointer" onClick={() => {
+              props.productToRemove(props.product);
+              props.toggleModal();
+            }} />
 
           </div>
           <div className="col-md-4 m-auto ">
@@ -31,7 +34,8 @@ function CartSummaryItem(props) {
                       if (props.product.quantity > 1) {
                         props.addToCart(props.product, '-');
                       } else {
-                        props.deleteFromCart(props.product);
+                        props.productToRemove(props.product);
+                        props.toggleModal();
                       }
                     }}>
                     <i className="fas fa-minus m-auto" />
