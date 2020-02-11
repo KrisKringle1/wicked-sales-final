@@ -22,6 +22,7 @@ if ($request['method'] === 'DELETE') {
     $response['body'] = [];
 
     send($response);
+    exit;
   }
   $productId = $request['body']['productId'];
   $cartItemId = $request['body']['cartItemId'];
@@ -31,6 +32,8 @@ if ($request['method'] === 'DELETE') {
             FROM cartItems
             WHERE cartId=${sessionId}
             AND cartItemId=${cartItemId}");
+  $response['body'] = "";
+  send($response);
 }
 
 if ($request['method'] === 'POST') {
