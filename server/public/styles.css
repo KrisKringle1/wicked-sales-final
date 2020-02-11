@@ -21,6 +21,13 @@
   width: 10%;
 }
 
+.overlay {
+  background: #00000040;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+}
+
 
 body {
   background-image: url("/images/vintage-concrete.png");

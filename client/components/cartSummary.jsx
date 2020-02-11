@@ -1,14 +1,17 @@
 import React from 'react';
 import CartSummaryItem from './cartSummaryItem';
+import RemoveModal from './remove-modal';
 
 class CartSummary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      removingItem: {}
+      removingItem: {},
+      productToRemove: null
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.productToRemove = this.productToRemove.bind(this);
   }
 
   toggleModal() {
@@ -26,7 +29,7 @@ class CartSummary extends React.Component {
             displayNone: true
           }
         });
-      }, 750);
+      }, 100);
     } else {
       this.setState({
         showModal: {
@@ -35,6 +38,11 @@ class CartSummary extends React.Component {
         }
       });
     }
+
+  }
+
+  productToRemove(cartItem) {
+    this.setState({ productToRemove: cartItem });
   }
 
   componentDidMount() {
@@ -47,8 +55,11 @@ class CartSummary extends React.Component {
 
       return <CartSummaryItem product={product}
         key={product.productId}
-
+        toggleModal={this.toggleModal}
+        showModal={this.state.showModal}
         callback={this.props.callback}
+        productToRemove={this.productToRemove}
+
         deleteFromCart={product => this.props.removeCallback(product)}
         addToCart={this.props.addToCart} />;
     });
@@ -77,9 +88,14 @@ class CartSummary extends React.Component {
             <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
             </a>
           </div>
+
           <h1 className="">Cart</h1>
 
           {products}
+          <RemoveModal cartItem={this.state.productToRemove}
+            toggleModal={this.toggleModal}
+            removeFromCart={this.props.removeCallback}
+            showModal={this.state.showModal} />
 
           <div className="d-md-flex justify-content-between ">
             <h3 className="md-my-auto- text-black-50 ">Total: ${realPrice}</h3>
