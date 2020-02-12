@@ -12,7 +12,7 @@ function addModal(props) {
           <p className="text-center">You added {props.product.name} to your cart</p>
           <div className="btn-group w-100">
             <button className="btn btn-primary w-50"
-              onClick={() => props.setView('catalog', {})}>Continue Shoping</button>
+              onClick={() => props.setView('catalog', {})}>Continue Shopping</button>
             <button className="btn btn-success text-white  w-50"
               onClick={() => props.setView('cart', {})}>View Cart</button>
           </div>
