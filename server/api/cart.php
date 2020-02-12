@@ -54,10 +54,26 @@ if ($request['method'] === 'POST') {
   $timeStampInsert = "INSERT INTO `carts` (createdAt)
                       VALUES (CURRENT_TIMESTAMP)";
 
-  if (!isset($_SESSION['cart_id'])) {
+  if (!empty($sessionId)) {
+    $cartIdQuery = "
+      SELECT COUNT(cartId) AS count
+      FROM `carts`
+      WHERE `cartId` = $sessionId
+    ";
+    $cartIdResult = mysqli_query($newLink, $cartIdQuery);
+    if (!$cartIdResult) {
+      throw new ApiError($cartIdQuery, 500);
+    }
+    if (mysqli_fetch_assoc($cartIdResult)['count'] == 0) {
+      $sessionId = NULL;
+    }
+  }
+
+  if (empty($sessionId)) {
     mysqli_query($newLink, $timeStampInsert);
     $sessionId = mysqli_insert_id($newLink);
   }
+  $_SESSION['cart_id'] = $sessionId;
 
   $cartItemsInsert = "INSERT INTO cartItems (cartId, productId, price, quantity)
                       VALUES($sessionId, $requestId, $fetch[price], 1)
@@ -76,8 +92,5 @@ if ($request['method'] === 'POST') {
   $productResponse = mysqli_fetch_assoc($joinQueryResponse);
   $response['body'] = $productResponse;
 
-  if (!$_SESSION['cart_id']) {
-    $_SESSION['cart_id'] = $cartItemsInsertId;
-  }
   send($response);
 }

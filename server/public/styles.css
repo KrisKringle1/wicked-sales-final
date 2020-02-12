@@ -10,6 +10,10 @@
 .pointer{
   cursor: pointer;
 }
+.modal-message {
+  max-width: 450px;
+  margin: auto;
+}
 
 .width-500{
   height:75%;
