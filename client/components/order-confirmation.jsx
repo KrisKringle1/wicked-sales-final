@@ -12,13 +12,9 @@ function OrderConfirmation(props) {
           </div>
           <div className="btn-group w-100">
             <button className="btn btn-secondary text-white  my-auto slide-in" onClick={() => {
+              props.noOrderModal();
               props.setView('catalog', {});
-              this.setState({
-                showOrderModal: {
-                  show: true,
-                  displayNone: false
-                }
-              });
+
             }}>Continue Shopping</button>
           </div>
         </div>
