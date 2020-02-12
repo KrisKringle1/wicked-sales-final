@@ -320,6 +320,8 @@ class CheckoutForm extends React.Component {
               <input type="name"
                 className={`form-control ${this.state.isValidated.zip ? ' ' : 'is-invalid'}`}
                 placeholder=""
+                minLength="5"
+                maxLength="5"
                 name="zip"
                 onChange={() => this.updateName(event)}
                 onSubmit={() => this.formSubmission(event)}>
@@ -417,7 +419,8 @@ class CheckoutForm extends React.Component {
 
         </form >
         <OrderConfirmation setView={this.props.setView}
-          showOrderModal={this.props.showOrderModal} />
+          showOrderModal={this.props.showOrderModal}
+          noOrderModal={this.props.noOrderModal} />
       </div >
     );
   }

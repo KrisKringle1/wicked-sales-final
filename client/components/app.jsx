@@ -16,6 +16,7 @@ export default class App extends React.Component {
     this.toggleIntroModal = this.toggleIntroModal.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
     this.toggleOrderModal = this.toggleOrderModal.bind(this);
+    this.noOrderModal = this.noOrderModal.bind(this);
     this.state = {
       cart: [],
       view: {
@@ -35,6 +36,15 @@ export default class App extends React.Component {
 
   setView(name, params) {
     this.setState({ view: { name: name, params: params } });
+  }
+
+  noOrderModal() {
+    this.setState({
+      showOrderModal: {
+        show: true,
+        displayNone: false
+      }
+    });
   }
 
   toggleOrderModal() {
@@ -196,7 +206,8 @@ export default class App extends React.Component {
             setView={this.setView}
             toggleOrderModal={this.toggleOrderModal}
             calculateTotal={this.calculateTotal}
-            showOrderModal={this.state.showOrderModal} />
+            showOrderModal={this.state.showOrderModal}
+            noOrderModal={this.noOrderModal} />
         </div>
       );
     }
