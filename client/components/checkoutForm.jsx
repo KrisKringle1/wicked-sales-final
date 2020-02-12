@@ -1,4 +1,5 @@
 import React from 'react';
+import OrderConfirmation from './order-confirmation';
 
 class CheckoutForm extends React.Component {
 
@@ -138,7 +139,9 @@ class CheckoutForm extends React.Component {
         // creditCardCVV: this.state.creditCardCVV,
         shippingAddress: this.state.shippingAddress
       };
+
       this.props.placeOrder(cart);
+      this.props.toggleOrderModal();
     } else {
       this.setState({
         name: this.state.name.trim(),
@@ -147,6 +150,7 @@ class CheckoutForm extends React.Component {
         isValidated: isValidated
       });
     }
+
   }
 
   render() {
@@ -158,7 +162,7 @@ class CheckoutForm extends React.Component {
           </a>
         </div>
 
-        <form onSubmit={() => this.formSubmission(event)}
+        <form onSubmit={() => { this.formSubmission(event); }}
           className="p-5 border rounded bg-light needs-validation"
           onChange={() => this.updateName(event)}
           noValidate >
@@ -408,10 +412,13 @@ class CheckoutForm extends React.Component {
           </div>
           <div className="d-flex justify-content-center">
             <button type="submit" className="btn btn-primary ">Checkout</button>
-          </div>
-        </form >
 
-      </div>
+          </div>
+
+        </form >
+        <OrderConfirmation setView={this.props.setView}
+          showOrderModal={this.props.showOrderModal} />
+      </div >
     );
   }
 }
