@@ -85,30 +85,40 @@ class CartSummary extends React.Component {
       );
     } else {
       return (
-        <div className="container py-5">
-          <div className="mb-3">
+        <>
+          <div className="d-flex bd-highlight mb-3">
+            <div className="mr-auto p-2 bd-highlight">
 
-            <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
-            </a>
+              <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
+              </a>
+            </div>
+            <div className="d-inline-flex  bd-highlight p-2">
+              <div className="container bg-white p-3 imageRounder">
+                <div className="">
+                  <h3 className=" ">Total: ${realPrice}</h3>
+                </div>
+                <div className="d-flex justify-content-center">
+                  <button className="btn btn-success primary my-auto " onClick={() => this.props.callback('checkout', {})}>Checkout</button>
+                </div>
+
+              </div>
+            </div>
           </div>
-          <div className="d-flex justify-content-center">
-            <h1 className="">Cart</h1>
-          </div>
+          <div className="container ">
 
-          {products}
-          <RemoveModal cartItem={this.state.productToRemove}
-            toggleModal={this.toggleModal}
-            removeFromCart={this.props.removeCallback}
-            showModal={this.state.showModal} />
+            <div className="d-flex justify-content-around">
+              <h1 className="">Cart</h1>
+            </div>
 
-          <div className="d-md-flex justify-content-between ">
-            <h3 className="md-my-auto- text-black-50 ">Total: ${realPrice}</h3>
+            {products}
+            <RemoveModal cartItem={this.state.productToRemove}
+              toggleModal={this.toggleModal}
+              removeFromCart={this.props.removeCallback}
+              showModal={this.state.showModal} />
 
-            <button className="btn btn-success primary my-auto " onClick={() => this.props.callback('checkout', {})}>Checkout</button>
+          </div >
 
-          </div>
-
-        </div >
+        </>
 
       );
     }
