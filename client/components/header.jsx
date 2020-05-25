@@ -12,7 +12,7 @@ function Header(props) {
 
   return (
 
-    <div className="sticky-top text-white py-2 header">
+    <div className=" text-white py-2 header">
 
       <div className="container justify-content-between d-flex">
         <div className="d-flex">

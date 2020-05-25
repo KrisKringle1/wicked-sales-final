@@ -5,7 +5,7 @@ function ProductListItem(props) {
 
   return (
 
-    <div className="col-md-6 col-lg-4 d-flex align-items-stretch p-0 ">
+    <div className="col-md-6 col-lg-4 d-flex align-items-stretch p-0 imageRounder">
 
       < div onClick={() => props.callback('details', { productId: props.product.productId })
       } className="card mb-4 pointer productCard item-card " >
