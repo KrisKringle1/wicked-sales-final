@@ -12,13 +12,13 @@ function Carousel(props) {
         </ol>
         <div className="carousel-inner">
           <div className="carousel-item" data-interval="3500">
-            <img src="/images/imperial-glasses.jpg" className="d-block w-100 "></img>
+            <img src="/images/imperial-glasses.jpg" className="d-block w-100 imageRounder "></img>
           </div>
           <div className="carousel-item ">
-            <img src="/images/secondary-assortment.jpg" className="d-block w-100" ></img>
+            <img src="/images/secondary-assortment.jpg" className="d-block w-100 imageRounder" ></img>
           </div>
           <div className="carousel-item active">
-            <img src="/images/pitcher-glasses.jpg" className="d-block w-100 " ></img>
+            <img src="/images/pitcher-glasses.jpg" className="d-block w-100 imageRounder " ></img>
           </div>
         </div>
         <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
