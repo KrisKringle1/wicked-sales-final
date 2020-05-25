@@ -9,9 +9,9 @@ function addModal(props) {
         <div className={'bg-white rounded p-3 modal-message '}>
           <h5 className="text-center ">You added {props.product.name} to your cart</h5>
           <div className="btn-group w-100 slide-in">
-            <button className="btn btn-secondary w-50"
+            <button className="btn btn-secondary p-2"
               onClick={() => props.setView('catalog', {})}>Continue Shopping</button>
-            <button className="btn btn-danger w-50"
+            <button className="btn btn-danger p-2"
               onClick={() => props.setView('cart', {})}>View Cart</button>
           </div>
         </div>
