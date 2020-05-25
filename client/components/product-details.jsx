@@ -72,23 +72,26 @@ class ProductDetails extends React.Component {
           <div className="container py-3 bg-white imageRounder">
             <div className="row mb-3">
               <div className="col-md-5">
-                <img src={product.image} className="float-left fittedObj col-sm"></img>
+                <img src={product.image} className=" imageSizer "></img>
               </div>
               <div className="col-md-7 ">
                 <div className="d-flex justify-content-center">
                   <h1 className="font-weight-bold productTitle">{product.name}</h1>
                 </div>
-                <div className="d-flex justify-content-center">
-                  <h2 className="font-weight-normal productPrice">{realPrice}</h2>
-                </div>
+
                 <div className="d-flex justify-content-center">
                   <h3 className=" productShortDescrip">{product.shortDescription}</h3>
                 </div>
+
                 <div className="d-flex justify-content-center">
                   <p className=" productLongDescrip">{product.longDescription}</p>
                 </div>
-
                 <div className="d-flex justify-content-center">
+                  <h2 className="font-weight-normal productPrice">{realPrice}</h2>
+                </div>
+
+                <div className="d-flex justify-content-around">
+
                   <button className=" btn btn-danger" onClick={() => { this.props.addToCart(this.state.product, '+'); this.toggleModal(); }
                   }>Add To Cart</button>
                 </div>

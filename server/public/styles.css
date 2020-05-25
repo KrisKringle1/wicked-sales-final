@@ -86,3 +86,7 @@ background-image: linear-gradient(rgb(50, 50, 50), rgb(100, 100, 100));
 .quantity{
   font-size: 2.2rem;
 }
+
+.imageSizer{
+  width:50%
+}
