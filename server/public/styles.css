@@ -1,3 +1,7 @@
+*{
+    font-family: Apple Chancery, cursive;
+
+}
 .fittingObj{
   object-fit: contain;
   height: 250px;
@@ -56,4 +60,27 @@ background-image: linear-gradient(rgb(50, 50, 50), rgb(100, 100, 100));
 
 .cart{
   cursor: pointer;
+}
+
+
+
+/*product details*/
+
+.productTitle{
+
+}
+
+.productPrice{
+    color: blue;
+
+}
+
+.productShortDescrip{
+    font-weight: bold;
+
+}
+
+.productLongDescrip{
+    font-weight: bold;
+
 }

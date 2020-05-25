@@ -21,7 +21,7 @@ function CartSummaryItem(props) {
           </div>
           <div className="col-md-8 m-auto ">
 
-            <h2 className="font-weight-bold col-md-6">{realPrice}</h2>
+            <h2 className="font-weight-bold col-md-6 productPrice">{realPrice}</h2>
             <p className="col-md-12 ">{props.product.longDescription}</p>
             <div className="d-flex ">
               <h5 className=" col-md-1 m-auto flex-row-reverse ">Quantity: </h5>
