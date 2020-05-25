@@ -62,6 +62,7 @@ function CartSummaryItem(props) {
               <i className="fas fa-plus m-auto" />
 
             </button>
+
           </div>
         </div>
       </div>
