@@ -11,9 +11,9 @@ function ProductListItem(props) {
       } className="card mb-4 pointer productCard item-card " >
         <img src={props.product.image} className="card-img-top fittingObj"></img>
         <div className="card-body text-center">
-          <h5 className="card-title">{props.product.name}</h5>
-          <h5 className="card-text font-weight-bold">{realPrice}</h5>
-          <p className="card-text font-italic">{props.product.shortDescription}</p>
+          <p className="card-title h2">{props.product.name}</p>
+          <p className="card-text font-weight-bold productPrice h4">{realPrice}</p>
+          <p className="card-text font-italic ">{props.product.shortDescription}</p>
         </div>
       </div >
     </div>
