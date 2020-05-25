@@ -66,9 +66,7 @@ background-image: linear-gradient(rgb(50, 50, 50), rgb(100, 100, 100));
 
 /*product details*/
 
-.productTitle{
 
-}
 
 .productPrice{
     color: blue;
@@ -83,4 +81,8 @@ background-image: linear-gradient(rgb(50, 50, 50), rgb(100, 100, 100));
 .productLongDescrip{
     font-weight: bold;
 
+}
+
+.quantity{
+  font-size: 2.2rem;
 }

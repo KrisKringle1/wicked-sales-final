@@ -72,10 +72,13 @@ class CartSummary extends React.Component {
             <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
             </a>
           </div>
+          <div className="d-flex justify-content-center">
+            <h1>Cart</h1>
 
-          <h1 className="">Cart</h1>
-
-          <h2 className="">There are no items in your cart!</h2>
+          </div>
+          <div className="d-flex justify-content-center">
+            <h2 className="">There are no items in your cart!</h2>
+          </div>
 
         </div>
 
@@ -88,8 +91,9 @@ class CartSummary extends React.Component {
             <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
             </a>
           </div>
-
-          <h1 className="">Cart</h1>
+          <div className="d-flex justify-content-center">
+            <h1 className="">Cart</h1>
+          </div>
 
           {products}
           <RemoveModal cartItem={this.state.productToRemove}
