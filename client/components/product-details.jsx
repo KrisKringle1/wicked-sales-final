@@ -61,13 +61,14 @@ class ProductDetails extends React.Component {
       const realPrice = `$${(product.price / 100).toFixed(2)}`;
       return (
         <>
-          <div className="mb-3">
 
-            <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
-            </a>
-
-          </div>
           <div className="container py-5">
+            <div className="mb-3">
+
+              <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
+              </a>
+
+            </div>
 
             <div className="container py-3 bg-white imageRounder">
               <div className="row mb-3">

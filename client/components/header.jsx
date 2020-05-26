@@ -10,6 +10,25 @@ function Header(props) {
     cartItemCount += props.cartItemCount[index].quantity;
   }
 
+  if (props.view.name === 'checkout' || props.view.name === 'cart') {
+    return (
+
+      <>
+        <div className=" text-white d-flex header mb-3">
+          <div className="container p-0">
+            <div className=" d-flex justify-content-center">
+              <div className="fa fa-beer m-1 fa-2x icon"></div>
+              <h2 className="ml-1">Get Beer Here</h2>
+            </div>
+            <IntroModal showIntroModal={props.showIntroModal}
+              toggleIntroModal={props.toggleIntroModal} />
+          </div>
+
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <div className=" text-white d-flex header mb-3">

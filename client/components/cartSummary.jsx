@@ -86,18 +86,14 @@ class CartSummary extends React.Component {
     } else {
       return (
         <>
-          <div className="d-flex bd-highlight mb-3">
-            <div className="mr-auto p-2 bd-highlight">
+          <div className="d-flex bd-highlight mb-3 flex-row-reverse">
 
-              <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
-              </a>
-            </div>
-            <div className="d-inline-flex  bd-highlight p-2">
+            <div className="d-inline-flex  bd-highlight ">
               <div className="container bg-white p-3 imageRounder">
                 <div className="">
                   <h3 className=" ">Total: ${realPrice}</h3>
                 </div>
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mx-4">
                   <button className="btn btn-success primary my-auto " onClick={() => this.props.callback('checkout', {})}>Checkout</button>
                 </div>
 
@@ -108,6 +104,11 @@ class CartSummary extends React.Component {
 
             <div className="d-flex justify-content-around">
               <h1 className="">Cart</h1>
+            </div>
+            <div className="mr-auto p-2 bd-highlight">
+
+              <a href="#" onClick={() => this.props.callback('catalog', {})} style={{ cursor: 'pointer' }} className="mb-3"><i className="fas fa-chevron-circle-left" />  Back to Catalog
+              </a>
             </div>
 
             {products}
