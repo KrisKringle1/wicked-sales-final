@@ -147,7 +147,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart}
-
+            view={this.state.view}
             callback={this.setView}
             showIntroModal={this.state.showIntroModal}
             toggleIntroModal={this.toggleIntroModal}
@@ -163,6 +163,7 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.cart}
             callback={this.setView}
+            view={this.state.view}
             showIntroModal={this.state.showIntroModal}
             toggleIntroModal={this.toggleIntroModal}
           />
@@ -182,11 +183,13 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.cart}
             callback={this.setView}
+            view={this.state.view}
             showIntroModal={this.state.showIntroModal}
             toggleIntroModal={this.toggleIntroModal}
           />
           <CartSummary cartInfo={this.state.cart}
             callback={this.setView}
+
             removeCallback={product => this.removeFromCart(product)}
             addToCart={this.addToCart}
             calculateTotal={this.calculateTotal} />
@@ -199,6 +202,7 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.cart}
             callback={this.setView}
+            view={this.state.view}
             showIntroModal={this.state.showIntroModal}
             toggleIntroModal={this.toggleIntroModal}
           />

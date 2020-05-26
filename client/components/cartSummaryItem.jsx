@@ -21,21 +21,20 @@ function CartSummaryItem(props) {
         <img src={props.product.image} className="fittingObj mr-auto p-2" />
         <div className="p-2">
 
-          <div className="d-flex justify-content-end">
-
-            <h2 className="  productPrice">{realPrice}</h2>
-
-          </div>
-
           <div>
             <p >{props.product.longDescription}</p>
           </div>
         </div>
 
       </div>
+      <div className="d-flex justify-content-end mx-3">
+
+        <h2 className="  productPrice">{realPrice}</h2>
+
+      </div>
       <div className="d-flex justify-content-end">
         <div className="quantity">Quantity: </div>
-        <div className=" btn-group mx-3 my-auto border border-dark rounded ">
+        <div className=" btn-group mx-3 my-2 border border-dark rounded ">
           <div className="d-flex">
             <button className="btn btn-light rounded-light "
               onClick={() => {
